@@ -1,0 +1,286 @@
+/* --- RESET --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    overflow-x: hidden;
+}
+/* --- HEADER FINAL CORRIGÉ --- */
+.top-bar {
+    background-color: #ffffff;
+    height: 180px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 100;
+}
+
+/* La zone de la flèche : on lui donne une largeur fixe 
+   pour qu'elle ne recouvre pas le titre au milieu */
+.back-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-decoration: none;
+    width: 250px; 
+    height: 100%;
+    z-index: 1001 !important; /* Force le lien au-dessus de tout */
+    cursor: pointer !important;
+}
+
+.circle-arrow {
+    width: 55px;
+    height: 55px;
+    background-color: #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease;
+}
+
+/* Effet au survol : on change la couleur pour vérifier que c'est cliquable */
+.back-arrow:hover .circle-arrow {
+    transform: scale(1.1);
+    background-color: #333; 
+}
+
+.circle-arrow svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* Le titre au milieu */
+.logo-container {
+    flex-grow: 1;
+    text-align: center;
+    pointer-events: none; /* Le titre devient "transparent" pour la souris */
+}
+
+.top-bar h1 {
+    font-size: 70px;
+    font-weight: 900;
+    font-family: 'Arial Black', Impact, sans-serif;
+    margin: 0;
+    pointer-events: auto; /* Permet quand même de sélectionner le texte */
+}
+
+/* La signature à droite */
+.signature-block {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    font-size: 1.8rem;
+    font-weight: bold;
+    width: 250px; /* Équilibre avec la zone de la flèche */
+}
+/* --- STYLE DES BLOCS (Commun) --- */
+.grid-item {
+    background-color: #f0f0f0;
+    display: flex;
+    position: relative;
+    padding: 20px;
+    color: black;
+    text-decoration: none;
+    border-radius: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: 0.3s ease;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.grid-item:hover {
+    transform: translateY(-5px);
+    background-color: #ffffff;
+}
+
+.titre-bloc {
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.contenu-bloc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* --- PAGE ACCUEIL (STRUCTURE CORRIGÉE) --- */
+.grid-accueil {
+    display: grid;
+    grid-template-columns: 1.1fr 1.1fr 1.2fr; 
+    grid-template-rows: 180px 150px 150px; 
+    gap: 25px;
+    padding: 30px 80px;
+    max-width: 1600px;
+    margin: 0 auto;
+    /* On définit les zones ici */
+    grid-template-areas: 
+        "propos propos cv"
+        "hard   soft   univ"
+        "hard   soft   perso";
+}
+
+/* Assignation des blocs aux zones */
+.item-propos { grid-area: propos; align-items: flex-start; text-align: left; }
+.item-cv     { grid-area: cv; }
+.item-hard   { grid-area: hard; align-items: flex-start; text-align: left; } /* En haut de la pile à gauche */
+.item-soft   { grid-area: soft; align-items: flex-start; text-align: left; } /* Juste en dessous de hard */
+.item-univ   { grid-area: univ; } /* En haut de la pile à droite */
+.item-perso  { grid-area: perso; } /* Juste en dessous de univ */
+
+.texte-propos { font-size: 1.2rem; margin-top: 10px; }
+
+/* --- SYSTÈME DE SURVOL --- */
+.texte-survol-cv, .texte-survol-p, .texte-survol-pp {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #666;
+    opacity: 0;
+    transition: 0.3s ease;
+    position: absolute;
+    bottom: 15px;
+}
+
+.bloc-cv:hover .texte-survol-cv,
+.bloc-p:hover .texte-survol-p,
+.bloc-pp:hover .texte-survol-pp,
+.bloc-projet:hover .texte-survol-p {
+    opacity: 1;
+    transform: translateY(-5px);
+}
+
+/* --- PAGE PROJETS (Pas de changement ici) --- */
+.projects-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 50px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+}
+
+.row .grid-item {
+    width: 380px; 
+    height: 159px;
+    flex-shrink: 0;
+}
+/* --- STYLE DU BOUTON RETOUR (CERCLE NOIR) --- */
+.back-container {
+    z-index: 10;
+}
+
+.circle-arrow {
+    width: 50px;
+    height: 50px;
+    background-color: #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.circle-arrow svg {
+    width: 25px;
+    height: 25px;
+}
+
+
+
+
+/* Zone du titre (Milieu) */
+.logo-container {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.top-bar h1 {
+    font-size: 70px; /* Ajusté pour laisser de la place au nom du projet */
+    font-weight: 900;
+    font-family: 'Arial Black', Impact, sans-serif;
+    margin: 0;
+}
+
+/* Zone de la signature (Droite) */
+.signature-block {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    font-size: 1.8rem;
+    font-weight: bold;
+    min-width: 250px; /* Même largeur que back-arrow pour centrer le titre */
+}
+
+/* --- STYLE GLOBAL DES LISTES --- */
+.liste-competences {
+    list-style-type: none;
+    padding-left: 0;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Règle de base pour TOUS les items */
+.liste-competences li {
+    font-size: 1.1rem; /* Taille par défaut */
+    color: #333;
+    margin-bottom: 2px;
+    font-weight: bold;
+    position: relative;
+    padding-left: 20px;
+}
+
+/* Puce personnalisée */
+.liste-competences li::before {
+    content: "•";
+    color: #000;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+/* --- TITRES DE CATÉGORIES (GRAS) --- */
+.item-categorie {
+    font-weight: bold;
+    margin-top: 15px !important;
+    margin-bottom: 5px !important;
+}
+
+.item-categorie::before {
+    content: "" !important; /* Pas de puce sur les titres gras */
+}
+
+/* --- SPÉCIFIQUE SOFT SKILLS (C'est ici que ça change) --- */
+/* On utilise !important pour être certain que ça gagne sur la règle générale */
+.item-soft .liste-competences div {
+    font-size: 1.1rem !important; 
+    line-height: 0.8 !important;
+    margin-bottom: 10px !important;
+}
+
+/* Si tu veux que la puce grossisse aussi dans Soft Skills */
+.item-soft .liste-competences li::before {
+    font-size: 2rem;
+}
+/* Si tu veux aussi plus d'espace après le titre "SOFT SKILLS :" */
+.item-soft .titre-bloc {
+    margin-bottom: 15px !important;
+}

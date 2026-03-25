@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - AGS</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/p2.css">
+</head>
+<body>
+
+<header class="top-bar">
+    <a href="projets.html" class="back-arrow">
+        <div class="circle-arrow">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </a>
+    
+    <div class="logo-container">
+        <h1>PROJET <span class="nom-projet">/ AGS</span></h1>
+    </div>
+
+    <div class="signature-block">
+        <span class="first-name">Warathan</span>
+        <span class="last-name">Kopithan</span>
+    </div>
+</header>
+
+    <main class="projet-wrapper">
+        <div class="side-block left-side">
+            <div class="scroll-content" id="img-cont">
+                <div class="section-content"><img src="img/21.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/22.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/23.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/24.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/25.png" class="img-projet" ></div>
+            </div>
+        </div>
+
+        <div class="side-block right-side transparent-bg">
+            <div class="scroll-content" id="txt-cont">
+                <div class="section-content"><h2>Contexte :</h2>
+                    <p>- Ce projet de deuxième année de BUT GEII consiste en la conception et la fabrication d'un démonstrateur photovoltaïque. L’objectif de l'AGS est d'évaluer précisément le potentiel de production d'une installation en conditions réelles.</p></div>
+                <div class="section-content"><h2>Logiciels et outils :</h2>
+                    <p>- Pour ce projet, nous avons utilisé les logiciels LabVIEW et MPLAB, ainsi que la valise AGS. J'ai pris en charge l'intégralité de la partie électronique qui consistait à calculer et choisir les composants électroniques du système.</p></div>
+                <div class="section-content"><h2>Ressenti :</h2>
+                    <p>- Dans la partie électronique, bien que les calculs des couples RC soient restés accessibles, j'ai dû porter une attention particulière à la sélection des composants. En effet, la valeur réelle des résistances peut varier légèrement, notamment sous l'effet de la chaleur lors de la soudure ou selon les tolérances de fabrication. Il était donc crucial de bien choisir les composants pour rester fidèle aux modèles théoriques et obtenir la courbe de réponse attendue (voir graphique ci-contre). La phase de soudure a été particulièrement fluide et rapide, ce qui nous a permis de mener le projet à bien sans pression.</p></div>
+                <div class="section-content">
+                    <h2 id="titre-special-centre">Auto-Évaluation</h2>
+                </div>
+                <div class="section-content"><h2>Conclusion :</h2>
+                    <p>- Bien que le projet se soit déroulé sans pression particulière, quelques séances ont été supprimées du calendrier, ce qui ne nous a pas permis de finaliser l'assemblage complet des trois parties. Cependant, chaque bloc fonctionnait parfaitement de manière indépendante. Ma carte électronique (photo ci-contre) a été validée et répondait entièrement aux attentes techniques.</p></div>
+            </div>
+        </div>
+    </main> 
+    <script>
+        const imgCont = document.getElementById('img-cont');
+        const txtCont = document.getElementById('txt-cont');
+        
+        let index = 0;
+        const total = 5;
+        let isMoving = false;
+
+        window.addEventListener('wheel', (e) => {
+            if (isMoving) return;
+
+            // Sensibilité du scroll
+            if (Math.abs(e.deltaY) < 30) return; 
+
+            if (e.deltaY > 0) {
+                if (index < total - 1) index++;
+                else return;
+            } else {
+                if (index > 0) index--;
+                else return;
+            }
+
+            isMoving = true;
+            // On calcule le déplacement (600px correspond à la hauteur définie dans ton p.css)
+            const moveY = index * 600; 
+
+            imgCont.style.transform = `translateY(-${moveY}px)`;
+            txtCont.style.transform = `translateY(-${moveY}px)`;
+
+            setTimeout(() => {
+                isMoving = false;
+            }, 1000); // Temps de pause entre deux scrolls
+
+        }, { passive: false });
+    </script>
+</body>
+</html>

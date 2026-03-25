@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Alarme</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/p2.css">
+</head>
+<body>
+
+<header class="top-bar">
+    <a href="projets.html" class="back-arrow">
+        <div class="circle-arrow">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </a>
+    
+    <div class="logo-container">
+        <h1>PROJET <span class="nom-projet">/ ALARME</span></h1>
+    </div>
+
+    <div class="signature-block">
+        <span class="first-name">Warathan</span>
+        <span class="last-name">Kopithan</span>
+    </div>
+</header>
+
+    <main class="projet-wrapper">
+        <div class="side-block left-side">
+            <div class="scroll-content" id="img-cont">
+                <div class="section-content"><img src="img/1.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/2.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/3.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/4.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/5.png" class="img-projet" ></div>
+            </div>
+        </div>
+
+        <div class="side-block right-side transparent-bg">
+            <div class="scroll-content" id="txt-cont">
+                <div class="section-content"><h2>Contexte :</h2>
+                    <p>- Dans le cadre de ce projet d'électronique numérique, l'objectif était de concevoir et de simuler un système de sécurité par alarme. Le dispositif repose sur la saisie d'un code confidentiel à quatre chiffres permettant l'armement et le désarmement du système.</p></div>
+                <div class="section-content"><h2>Logiciels et outils :</h2>
+                    <p>- La réalisation de ce projet repose sur l'utilisation du logiciel Quartus II associé à la carte de développement Altera DE1. La conception combine une dimension logicielle et une architecture matérielle d'automatisme. J'ai notamment implémenté des fonctions logiques en intégrant des multiplexeurs et des comparateurs pour gérer le traitement des signaux de l'alarme.</p></div>
+                <div class="section-content"><h2>Ressenti :</h2>
+                    <p>- Premier projet de mon cursus, cette expérience a représenté un véritable défi, notamment en matière d'autonomie et de travail en équipe. J'ai rapidement pris conscience de l'importance de l'investissement personnel en dehors des cours, ainsi que de la nécessité d'une gestion du temps et d'une répartition des tâches efficaces.
+                            Sur le plan technique, la prise en main du logiciel a nécessité un temps d'adaptation. Si les fonctions logiques ont été assimilées facilement, la maîtrise des composants tels que les multiplexeurs et les comparateurs a constitué le principal défi de ce projet.</p></div>
+                <div class="section-content">
+                    <h2 id="titre-special-centre">Auto-Évaluation</h2>
+                </div>
+                <div class="section-content"><h2>Conclusion :</h2>
+                    <p>- Ce premier projet a été une expérience formatrice, marquant ma première confrontation au travail sous pression. Une mauvaise gestion du temps ne nous a pas permis de finaliser l'intégralité du travail attendu. Cependant, cet échec partiel a été riche en enseignements : il m'a permis de comprendre l'importance cruciale de la planification et de mieux appréhender le stress lié aux échéances. C'est une base solide sur laquelle je m'appuie désormais pour mes futurs projets.</p></div>
+            </div>
+        </div>
+    </main> 
+
+    <script>
+        const imgCont = document.getElementById('img-cont');
+        const txtCont = document.getElementById('txt-cont');
+        
+        let index = 0;
+        const total = 5;
+        let isMoving = false;
+
+        window.addEventListener('wheel', (e) => {
+            if (isMoving) return;
+
+            // Sensibilité du scroll
+            if (Math.abs(e.deltaY) < 30) return; 
+
+            if (e.deltaY > 0) {
+                if (index < total - 1) index++;
+                else return;
+            } else {
+                if (index > 0) index--;
+                else return;
+            }
+
+            isMoving = true;
+            // On calcule le déplacement (600px correspond à la hauteur définie dans ton p.css)
+            const moveY = index * 600; 
+
+            imgCont.style.transform = `translateY(-${moveY}px)`;
+            txtCont.style.transform = `translateY(-${moveY}px)`;
+
+            setTimeout(() => {
+                isMoving = false;
+            }, 1000); // Temps de pause entre deux scrolls
+
+        }, { passive: false });
+    </script>
+</body>
+</html>

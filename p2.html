@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Roomba</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/p2.css">
+</head>
+<body>
+
+<header class="top-bar">
+    <a href="projets.html" class="back-arrow">
+        <div class="circle-arrow">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </a>
+    
+    <div class="logo-container">
+        <h1>PROJET <span class="nom-projet">/ ROOMBA</span></h1>
+    </div>
+
+    <div class="signature-block">
+        <span class="first-name">Warathan</span>
+        <span class="last-name">Kopithan</span>
+    </div>
+</header>
+
+    <main class="projet-wrapper">
+        <div class="side-block left-side">
+            <div class="scroll-content" id="img-cont">
+                <div class="section-content"><img src="img/6.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/7.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/8.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/9.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/10.png" class="img-projet" ></div>
+            </div>
+        </div>
+        
+        <div class="side-block right-side transparent-bg">
+            <div class="scroll-content" id="txt-cont">
+                <div class="section-content"><h2>Contexte :</h2>
+                    <p>- Le robot aspirateur intègre divers capteurs essentiels à son fonctionnement autonome. Notre projet consiste à travaillé sur le système de navigation du robot aspirateur. Nous avons développé et intégré un capteur de détection de vide, une fonction critique permettant au robot de détecter les obstacles de type escaliers ou zones de chute, et d'adapter sa trajectoire en faisant demi-tour.</p></div>
+                <div class="section-content"><h2>Logiciels et outils :</h2><p>- La phase initiale de ce projet a consisté à effectuer des tests de vérification via le logiciel de Programmation Arduino IDE et une carte Arduino MEGA. Dans un second temps, nous avons procédé à la réalisation du circuit éléctronique sur des plaques à essai. Cette étape nous a permis, à l'aide d'oscilloscopes, d'analyser les signaux et de valider le bon fonctionnement du capteur de détection de vide en conditions réelles.</p></div>
+                <div class="section-content"><h2>Ressenti :</h2><p>- Avec les expériences tirées de mon premier projet, j'ai immédiatement adopté une approche plus structurée en organisant le travail d'équipe et en définissant une répartition claire des tâches. Cette anticipation m'a permis d'aborder la mission avec une plus grande sérénité, bien que le respect des délais soit resté une priorité constante tout au long du développement. La prise en main de l'environnement Arduino a été fluide et intuitive. Le principal défi a résidé dans la transposition du schéma électronique sur plaques à essai a exigé une grande rigueur pour garantir la fiabilité des connexions et la clarté du montage.</p></div>
+                <div class="section-content">
+                    <h2 id="titre-special-centre">Auto-Évaluation</h2>
+                </div>
+                <div class="section-content"><h2>Conclusion :</h2><p>- Malgré une organisation rigoureuse, nous avons été confrontés à des défaillances matérielles et à des imprévus techniques lors du câblage. Ces obstacles nous ont contraints à une mobilisation intense jusqu'à la finalisation du projet. Cette expérience a été riche en enseignements : elle m'a permis de comprendre l'importance d'inclure une marge de sécurité pour les pannes matérielles dans le planning. Nous avons su faire preuve de réactivité pour livrer un projet fonctionnel, tout en intégrant cette nouvelle leçon d'anticipation pour mes futures réalisations.</p></div>
+            </div>
+        </div>
+    </main> 
+
+    <script>
+        const imgCont = document.getElementById('img-cont');
+        const txtCont = document.getElementById('txt-cont');
+        
+        let index = 0;
+        const total = 5;
+        let isMoving = false;
+
+        window.addEventListener('wheel', (e) => {
+            if (isMoving) return;
+
+            // Sensibilité du scroll
+            if (Math.abs(e.deltaY) < 30) return; 
+
+            if (e.deltaY > 0) {
+                if (index < total - 1) index++;
+                else return;
+            } else {
+                if (index > 0) index--;
+                else return;
+            }
+
+            isMoving = true;
+            // On calcule le déplacement (600px correspond à la hauteur définie dans ton p.css)
+            const moveY = index * 600; 
+
+            imgCont.style.transform = `translateY(-${moveY}px)`;
+            txtCont.style.transform = `translateY(-${moveY}px)`;
+
+            setTimeout(() => {
+                isMoving = false;
+            }, 1000); // Temps de pause entre deux scrolls
+
+        }, { passive: false });
+    </script>
+</body>
+</html>

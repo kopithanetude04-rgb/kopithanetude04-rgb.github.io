@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - PT100</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/p2.css">
+</head>
+<body>
+
+<header class="top-bar">
+    <a href="projets.html" class="back-arrow">
+        <div class="circle-arrow">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </a>
+    
+    <div class="logo-container">
+        <h1>PROJET <span class="nom-projet">/ PT100</span></h1>
+    </div>
+
+    <div class="signature-block">
+        <span class="first-name">Warathan</span>
+        <span class="last-name">Kopithan</span>
+    </div>
+</header>
+
+    <main class="projet-wrapper">
+        <div class="side-block left-side">
+            <div class="scroll-content" id="img-cont">
+                <div class="section-content"><img src="img/26.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/27.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/28.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/29.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/30.png" class="img-projet" ></div>
+            </div>
+        </div>
+
+        <div class="side-block right-side transparent-bg">
+            <div class="scroll-content" id="txt-cont">
+                <div class="section-content"><h2>Contexte :</h2>
+                    <p>- L'objectif de ce projet est de concevoir un système complet de surveillance thermique capable de transmettre à distance la température d’une cuve vers un serveur Cloud. Ce dispositif permet une consultation des données en temps réel depuis n'importe quel poste connecté à Internet.</p></div>
+                <div class="section-content"><h2>Logiciels et outils :</h2>
+                    <p>- Pour ce projet, j'ai commencé par simuler un circuit de conditionnement sur LTspice afin d'adapter le signal de la sonde PT100. Ensuite, j'ai programmé l'ESP32 sur VS Code pour convertir la tension reçue en température réelle. Enfin, pour la partie réseau, nous avons utilisé Mosquitto et l'application MyMQTT afin de recevoir et d'afficher les données en temps réel sur smartphone.</p></div>
+                <div class="section-content"><h2>Ressenti :</h2>
+                    <p>- Le plus dur a été le démarrage, car nous étions en situation réelle. Il n'y avait pas de support de cours, seulement la consigne et quelques explications. Le choix du générateur de courant continu a été compliqué au début, mais une fois cette étape passée, tout s'est déroulé parfaitement. La partie réseau était aussi un peu difficile à comprendre, mais grâce à l'aide de mon camarade qui maîtrisait bien ce sujet, nous avons pu avancer facilement. Ce projet m'a appris à être plus autonome face à un problème technique.</p></div>
+                <div class="section-content">
+                    <h2 id="titre-special-centre">Auto-Évaluation</h2>
+                </div>
+                <div class="section-content"><h2>Conclusion :</h2>
+                    <p>- Pour conclure, nous avons réussi à finaliser le projet dans les délais impartis. Ce qui est intéressant, c'est que malgré l'absence de support de cours au départ, j'ai fini par avoir une maîtrise totale du projet et de son déroulement. Cette expérience en situation réelle m'a prouvé que je pouvais m'adapter rapidement.</p></div>
+            </div>
+        </div>
+    </main> 
+
+    <script>
+        const imgCont = document.getElementById('img-cont');
+        const txtCont = document.getElementById('txt-cont');
+        
+        let index = 0;
+        const total = 5;
+        let isMoving = false;
+
+        window.addEventListener('wheel', (e) => {
+            if (isMoving) return;
+
+            // Sensibilité du scroll
+            if (Math.abs(e.deltaY) < 30) return; 
+
+            if (e.deltaY > 0) {
+                if (index < total - 1) index++;
+                else return;
+            } else {
+                if (index > 0) index--;
+                else return;
+            }
+
+            isMoving = true;
+            // On calcule le déplacement (600px correspond à la hauteur définie dans ton p.css)
+            const moveY = index * 600; 
+
+            imgCont.style.transform = `translateY(-${moveY}px)`;
+            txtCont.style.transform = `translateY(-${moveY}px)`;
+
+            setTimeout(() => {
+                isMoving = false;
+            }, 1000); // Temps de pause entre deux scrolls
+
+        }, { passive: false });
+    </script>
+</body>
+</html>

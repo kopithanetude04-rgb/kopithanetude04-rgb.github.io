@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Vélo</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/p2.css">
+</head>
+<body>
+
+<header class="top-bar">
+    <a href="projets.html" class="back-arrow">
+        <div class="circle-arrow">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </a>
+    
+    <div class="logo-container">
+        <h1>PROJET <span class="nom-projet">/ VÉLO</span></h1>
+    </div>
+
+    <div class="signature-block">
+        <span class="first-name">Warathan</span>
+        <span class="last-name">Kopithan</span>
+    </div>
+</header>
+
+    <main class="projet-wrapper">
+        <div class="side-block left-side">
+            <div class="scroll-content" id="img-cont">
+                <div class="section-content"><img src="img/11.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/12.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/13.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/14.png" class="img-projet" ></div>
+                <div class="section-content"><img src="img/15.png" class="img-projet" ></div>
+            </div>
+        </div>
+
+        <div class="side-block right-side transparent-bg">
+            <div class="scroll-content" id="txt-cont">
+                <div class="section-content"><h2>Contexte :</h2>
+                    <p>-  Le projet portait sur la conception et l'étude d'un système de commande pour motorisation électrique. L'objectif principal était de développer une solution permettant de piloter avec précision la vitesse d'un moteur, simulant ainsi le fonctionnement d'un vélo à assistance électrique.</p></div>
+                <div class="section-content"><h2>Logiciels et outils :</h2>
+                    <p>- Le projet a débuté par l'étude théorique d'un moteur à courant continu, suivie de simulations sur le logiciel PSIM pour dimensionner précisément les composants et les couples RC.
+                         Après avoir validé le montage sur plaque d'essai pour tester le comportement réel du circuit, j'ai finalisé la réalisation par l'implantation et la soudure des composants sur une carte électronique dédiée.</p></div>
+                <div class="section-content"><h2>Ressenti :</h2>
+                    <p>- L'expérience de mes deux projets précédents m'a vraiment servi à mieux gérer mon temps et mon travail cette fois-ci. J'ai pu anticiper une marge de sécurité, ce qui nous a permis de finir le projet largement dans les temps sans stress.
+                         La grande nouveauté pour moi a été la soudure, une technique que j'ai apprise et maîtrisée très rapidement pour monter la carte. Ce projet m'a aussi rendu plus autonome : comme on était moins accompagnés par le professeur, on a dû faire nos propres recherches et collecter les informations techniques par nous-même pour faire avancer le montage et garantir son bon fonctionnement.</p></div>
+                <div class="section-content">
+                    <h2 id="titre-special-centre">Auto-Évaluation</h2>
+                </div>
+                <div class="section-content"><h2>Conclusion :</h2>
+                    <p>- Ce projet s’est déroulé exactement comme prévu et nous avons réussi à le finaliser dans les délais impartis. L'expérience de mes projets précédents m'a vraiment aidé à mieux gérer mon temps et à anticiper les étapes de fabrication.
+
+Au-delà du résultat technique que vous voyez sur cette carte, ce travail m'a permis d'acquérir de nouvelles compétences concrètes comme la soudure et l'exploitation de documentations techniques. J'ai également gagné en autonomie.</p></div>
+            </div>
+        </div>
+    </main> 
+
+    <script>
+        const imgCont = document.getElementById('img-cont');
+        const txtCont = document.getElementById('txt-cont');
+        
+        let index = 0;
+        const total = 5;
+        let isMoving = false;
+
+        window.addEventListener('wheel', (e) => {
+            if (isMoving) return;
+
+            // Sensibilité du scroll
+            if (Math.abs(e.deltaY) < 30) return; 
+
+            if (e.deltaY > 0) {
+                if (index < total - 1) index++;
+                else return;
+            } else {
+                if (index > 0) index--;
+                else return;
+            }
+
+            isMoving = true;
+            // On calcule le déplacement (600px correspond à la hauteur définie dans ton p.css)
+            const moveY = index * 600; 
+
+            imgCont.style.transform = `translateY(-${moveY}px)`;
+            txtCont.style.transform = `translateY(-${moveY}px)`;
+
+            setTimeout(() => {
+                isMoving = false;
+            }, 1000); // Temps de pause entre deux scrolls
+
+        }, { passive: false });
+    </script>
+</body>
+</html>
