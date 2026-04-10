@@ -284,3 +284,5 @@ body {
 .item-soft .titre-bloc {
     margin-bottom: 15px !important;
 }
+/* --- LOGO IUT (En haut à gauche) --- */
+.logo-iut { position: absolute; top: 20px; left: 20px; width: 100px; z-index: 1000; }
